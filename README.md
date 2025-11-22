@@ -1,0 +1,236 @@
+# 🛠️ LIBERO-Mem Setup & Demonstration Guide
+
+The data generated in this codebase are hosted on Hugging Face at:  
+👉 **https://huggingface.co/datasets/libero-mem/LIBERO-Mem**
+
+For raw data without observations and object-centric annotations, the data are also hosted on Hugging Face at:
+👉 **https://huggingface.co/datasets/libero-mem/LIBERO-Mem-Raw**
+
+To load the dataset in RLDS format, we provide an RLDS builder at:
+
+```
+scripts/__rlds_builder/LIBERO_Mem
+```
+
+This builder is adapted from the X-Embodiment RLDS dataset builder:  
+👉 https://github.com/moojink/rlds_dataset_builder
+
+In the RLDS version of LIBERO-Mem, object-centric metadata from the HDF5 files are converted into compact text strings. This conversion is performed by the following helper:
+
+```python
+def convert2texts(reasoning, image_size=256):
+    revised_reasoning = []
+    for datum in reasoning:
+        datum_reasoning = []
+        # datum is a dictionary: {object_name: [seg_id, bbox_xywh_01, interaction_count]}
+        for key, values in datum.items():
+            seg_ind, bbox, itrn_cnt = values
+            bbox = (np.array(bbox) * image_size).astype(np.int32)
+            # Encodes as: "<object_name>:<seg_id>,<x,y,w,h>,<interaction_count>"
+            re_key_values = f"{key}:{seg_ind},{bbox},{itrn_cnt}"
+            datum_reasoning.append(re_key_values)
+        datum_reasoning = "#".join(datum_reasoning)
+        revised_reasoning.append(datum_reasoning)
+    return revised_reasoning
+```
+
+Thus, each object in a frame is encoded as:
+
+```
+<object_name>:<seg_id>,<x,y,w,h>,<interaction_count>
+```
+
+Multiple objects within the same frame are joined using the separator `#`, producing a single compact string per frame. Examples stored in RLDS:
+
+```python
+'image_reasoning': image_reasonings[i]           
+'wrist_image_reasoning': wrist_image_reasonings[i]
+```
+
+Example string:
+
+```
+"bowl:20,[40,56,14,12],two: bowl 1 on plate 1#plate:40,[39,61,17,09],0"
+```
+
+This string can be parsed in three steps. Firstly, each `# `marks a different object within the same frame,
+```
+"bowl:20,[40,56,14,12],two: bowl 1 on plate 1"
+"plate:40,[39,61,17,09],0"
+```
+then we can split by `,` to separate fields within each object, which separate (the object name + segmentation ID, the bounding box, the interaction/subgoal annotation),
+```
+"bowl:20"     "[40,56,14,12]"     "two: bowl 1 on plate 1"
+"plate:40"    "[39,61,17,09]"     "0"
+```
+finally, it can be split by `:` to separate object class from segmentation ID and subgoal ID to interaction annotation. These fields are used to provide a **lightweight, object-centric textual representation** aligned with each frame of the RGB(-D) observations. The text-based format enables interaction/subgoal counting to be embedded directly into the tokenization process so as to introduce meaningful lexical variation that could benefit text-conditioned action prediction.
+
+
+## 1. 🔧 Installation
+
+### From the LIBERO Root Directory
+
+1. **Install LIBERO**
+
+```bash
+cd LIBERO/
+pip install -e .
+```
+
+2. **Install robomimic**
+
+```bash
+cd thirdparty/robomimic
+pip install -e .
+```
+
+3. **Install robosuite**
+
+```bash
+cd ../robosuite
+pip install -e .
+```
+
+---
+
+## 2. 📥 Collect Demonstrations
+
+### Navigate to Scripts Directory
+
+```bash
+cd LIBERO/scripts
+pip install -r requirements.txt
+```
+
+> ℹ️ Adjust the path if your folder structure differs.
+
+---
+
+### 📊 Goal Structure Comparison
+
+| **Aspect**            | **Existing Work**                                   | **Ours (Sequenced)**                                                    | **Example Use**                                        |
+|-----------------------|-----------------------------------------------------|------------------------------------------------------------------------|---------------------------------------------------------|
+| **Goal Type**         | Flat conjunction (`And`)                            | Compositional logic (`Sequence`, `Or`, nested `And`)                  | Place bowl on plate                                     |
+| **Temporal Reasoning**| ❌ Not supported                                    | ✅ Sequenced steps with `Sequence`                                     | Place object on 3 plates in order                       |
+| **Alternative Paths** | ❌ One fixed goal                                   | ✅ Multiple paths via `Or`                                             | Two valid sequences for table setup                     |
+| **Spatial Reasoning** | ✅ Basic (`On`)                                     | ✅ Combines `On`, `In`, `Contain_Region`                              | Put cheese in basket, move basket to table center       |
+| **Difficulty Level**  | Low: one-step placement                             | Medium–High: multi-step, multi-object                                 | Rearranging objects across locations                   |
+| **Robust Evaluation** | ❌ Single outcome only                              | ✅ Supports partial success, planning, memory                         | Ordered subgoal execution                              |
+
+---
+
+## 3. 📐 Benchmark Designs
+
+### Benchmark Overview
+
+| **Benchmark (Venue)**     | **Horizon**   | **Tiered** | **Non-Markov Variants**                  | **Success** | **Behavior Metrics** | **Task Progress** | **Tasks** | **# Demos** | **Labels**                                        |
+|--------------------------|---------------|------------|------------------------------------------|-------------|-----------------------|--------------------|-----------|-------------|--------------------------------------------------|
+| RLBench (ICRA’20)        | Short–Medium  | ✗          | ✗                                        | ✓           | ✗                  | ✗              | 75        | 0           | Action                                           |
+| MemoryBench (ICML’25)    | Short–Medium  | ✗          | OM, OS                                    | ✅           | ✅                 | ✅              | 7         | 700         | Action                                           |
+| RoboCasa (RSS’24)        | Long          | ✗          | ✗                                        | ✅           | ✅                     | ✅              | 100       | 5k+         | Action                                           |
+| Taskverse (arXiv’25)     | Short–Long    | ✅          | ✗                                        | ✅           | ✅                     | ✅              | 8         | 3k+         | Action                                           |
+| LIBERO-{Goal,Object,Spatial,90,10} (NeurIPS’23) | Short–Long       | ✗          | ✗                                        | ✅           | ✅                      | ✗              | 10 (Goal, Spatial, Object, 10) / 90 (90)   | 500 (Goal, Spatial, Object, 10) / ~4000 (90)     | Action                                           |
+| LIBERO-Mem (Ours)        | Short–Long    | ✅          | OM, OS, OR, OO                            | ✅           | ✅                | ✅              | 10        | 1200         | Action + Subgoals + Object masks/bboxes/depths   |
+
+> **OM, OS, OR, OO** refer to:  
+> **Object Motion, Object Sequence, Object Relation, Object Occlusion**
+
+---
+
+## 4. 🧾 BDDL Task Summary
+
+```bash
+cd <repo>/libero/libero/bddl_files/libero_mem
+```
+
+---
+
+## 5. ⚙️ Initial State Generation
+
+```bash
+python mem_1_develop_init_states.py --bddl-file <path-to-bddl> --target-path init-data
+```
+
+We have already pregenerated several init positions
+
+``` bash
+init-data/KITCHEN_SCENE1_1_pick_up_the_bowl_and_place_it_back_on_the_plate.pruned_init
+init-data/KITCHEN_SCENE1_7_swap_the_2_bowls_on_their_plates_using_the_empty_plate.pruned_init
+init-data/KITCHEN_SCENE1_8_rotate_the_3_bowls_on_their_plates_from_left_to_right_using_the_empty_plate.pruned_init
+init-data/KITCHEN_SCENE1_9_put_the_cream_cheese_in_the_nearest_basket_and_place_that_basket_in_the_center.pruned_init
+```
+
+---
+
+## 6. 🎮 Collect Demonstration Trajectories
+
+```bash
+python mem_2_collect_demonstration.py --dataset-name libero_mem --bddl-file <path> --init-path <init-state-path>
+```
+
+Our code implements sequential subgoal checking with robustness and overshoot detection. The evaluator progresses through subgoals in order, using timers to ensure that each subgoal is truly achieved (i.e., stable for several steps) before moving on. Once all subgoals are completed, the system also checks whether the final goal remains satisfied; if it stops being true for too long (i.e.. more than 5 consecutive frames), the sequence is marked as overshot and permanently fails. Overall, the logic smooths out momentary noise, ensures subgoals are achieved in order, and prevents the agent from drifting away after completing the task.
+
+Example when run in `scripts`,
+```bash
+python mem_2_collect_demonstration.py --dataset-name libero_mem --bddl-file '../libero/libero/bddl_files/libero_mem/KITCHEN_SCENE1_1_pick_up_the_bowl_and_place_it_back_on_the_plate.bddl' --init-path './__init_data/KITCHEN_SCENE1_1_pick_up_the_bowl_and_place_it_back_on_the_plate.pruned_init'
+```
+
+The generated data are saved in `scripts/demonstration_data`.
+
+---
+
+## 7. 🧼 Refine with Object-Centric Labels
+
+```bash
+python mem_3_refine_demonstration.py   --libero_task_suite libero_mem   --libero_raw_data_dir ./demonstration_data/libero_mem   --libero_target_dir ./demonstration_data/libero_mem_revised   --max_replays 100
+```
+
+Here, we refine the demonstration data by replaying the collected trajectories. During this process, the code adds object-centric annotations and appends 20 zero-actions at the end of each trajectory to explicitly represent stoppage for action prediction. The refined trajectories are then saved separately for each task. Although the initial states and seeds are loaded exactly for every refinement, a small amount of nondeterminism in the physics engine can still cause a few trajectories to fail during replay.
+
+---
+
+## 8. 🧩 Merge Demonstration Files
+
+```bash
+python mem_4_merge_demonstrations.py   --libero_task_suite libero_mem   --libero_raw_data_dir ./demonstration_data/libero_mem_revised   --libero_target_dir ./demonstration_data/libero_mem_combined
+```
+
+### Output
+
+- Each task generates a `.hdf5` file under:
+  ```bash
+  LIBERO/scripts/demonstration_data/
+  ```
+- Ensure the target directory is writable.
+
+---
+
+## 9. Citation
+
+We specially thank the [LIBERO team](https://libero-project.github.io/) for facillitating the original tools and datasets. If you find LIBERO-Mem to be useful in your own research, please consider citing the papers:
+
+```bibtex
+@article{chung2025liberomem,
+  title={Rethinking Progression of Memory State in Robotic Manipulation: An Object-Centric Perspective},
+  author={Chung, Nhat and Hanyu, Taisei and Nguyen, Toan and Le, Huy and Bumgarner, Frederick and Minh Ho Nguyen, Duy and Vo, Khoa and Yamazaki, Kashu and Rainwater, Chase and Kieu, Tung and Nguyen, Anh and Le, Ngan},
+  journal={arXiv preprint arXiv:2511.11478},
+  year={2025}
+}
+```
+
+```bibtex
+@article{liu2023libero,
+  title={LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning},
+  author={Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},
+  journal={arXiv preprint arXiv:2306.03310},
+  year={2023}
+}
+```
+
+---
+
+# License
+| Component        | License                                                                                                                             |
+|------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| Codebase         | [MIT License](LICENSE)                                                                                                                      |
+| Datasets         | [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/legalcode)                 |

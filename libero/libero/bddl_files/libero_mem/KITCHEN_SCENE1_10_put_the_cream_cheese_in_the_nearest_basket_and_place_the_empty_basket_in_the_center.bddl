@@ -1,0 +1,90 @@
+(define (problem LIBERO_Kitchen_Tabletop_Manipulation)
+  (:domain robosuite)
+  (:language put the cream cheese in the nearest basket and place the empty basket in the center)
+    (:regions
+      (basket_init_region_1
+          (:target kitchen_table)
+          (:ranges (
+              (-0.21 0.15 -0.19 0.17)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (basket_init_region_2
+          (:target kitchen_table)
+          (:ranges (
+              (-0.21 -0.10 -0.19 -0.08)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (cream_cheese_init_region
+          (:target kitchen_table)
+          (:ranges (
+              (0.00 -0.17 0.02 0.20)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (the_center
+          (:target kitchen_table)
+          (:ranges (
+              (-0.10 -0.17 0.25 0.20)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (contain_region
+          (:target basket_1)
+      )
+      (contain_region
+          (:target basket_2)
+      )
+    )
+
+  (:fixtures
+    kitchen_table - kitchen_table
+  )
+
+  (:objects
+    cream_cheese_1 - cream_cheese
+    basket_1 basket_2 - basket
+  )
+
+  (:obj_of_interest
+    cream_cheese_1
+    basket_1
+  )
+
+  (:init
+    (On cream_cheese_1 kitchen_table_cream_cheese_init_region)
+    (On basket_1 kitchen_table_basket_init_region_1)
+    (On basket_2 kitchen_table_basket_init_region_2)
+  )
+
+  (:goal
+    (Or
+      (Sequence
+        (And (In cream_cheese_1 basket_1_contain_region))
+        (And (On basket_2 kitchen_table_the_center))
+      )
+      (Sequence
+        (And (In cream_cheese_1 basket_2_contain_region))
+        (And (On basket_1 kitchen_table_the_center))
+      )
+    )
+  )
+
+)
