@@ -1,0 +1,7 @@
+python playback_dataset.py --dataset ../../datasets/can/ph/image_v141.hdf5 --render_image_names agentview robot0_eye_in_hand --video_path test-vid-actions.mp4 --use-actions --n 5
+
+python 10_playback_dataset.py --dataset ../../datasets/can/ph/image_v141.hdf5 --render_image_names agentview robot0_eye_in_hand --render_depth_names agentview_depth robot0_eye_in_hand_depth  --video_path test-vid-actions.mp4 --use-actions --n 1
+python 10_playback_dataset.py --dataset ../../datasets/can/ph/image.hdf5 --render_image_names agentview robot0_eye_in_hand --render_depth_names agentview_depth robot0_eye_in_hand_depth  --video_path test-vid-actions-internet.mp4 --use-actions --n 1
+
+python 10_playback_dataset.py --dataset ../../datasets/can/ph/image_v141.hdf5 --render_image_names agentview_image robot0_eye_in_hand_image  --video_path test-vid-obs.mp4 --use-obs --n 1
+python 10_playback_dataset.py --dataset ../../datasets/can/ph/image.hdf5 --render_image_names agentview_image robot0_eye_in_hand_image  --video_path test-vid-obs-internet.mp4 --use-obs --n 1
