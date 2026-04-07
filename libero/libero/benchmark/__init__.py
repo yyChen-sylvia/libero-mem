@@ -55,7 +55,16 @@ def grab_language_from_filename(x):
 
 
 libero_suites = [
+    # RoboCerebra
+    "ideal",
+    "memory_execution",
+    "memory_exploration",
+    "mix",
+    "observation_mismatching",
+    "random_disturbance",
+    # libero-mem
     "libero_mem",
+    # libero
     "libero_relation",
     "libero_spatial",
     "libero_object",
@@ -171,6 +180,48 @@ class Benchmark(abc.ABC):
 
     def set_task_embs(self, task_embs):
         self.task_embs = task_embs
+
+@register_benchmark
+class IDEAL(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "ideal"
+        self._make_benchmark()
+
+@register_benchmark
+class MEMORY_EXECUTION(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "memory_execution"
+        self._make_benchmark()
+
+@register_benchmark
+class MEMORY_EXPLORATION(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "memory_exploration"
+        self._make_benchmark()
+
+@register_benchmark
+class MIX(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "mix"
+        self._make_benchmark()
+
+@register_benchmark
+class OBSERVATION_MISMATCHING(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "observation_mismatching"
+        self._make_benchmark()
+
+@register_benchmark
+class RANDOM_DISTURBANCE(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "random_disturbance"
+        self._make_benchmark()
 
 @register_benchmark
 class LIBERO_MEM(Benchmark):
