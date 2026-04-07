@@ -1,0 +1,180 @@
+(define (problem LIBERO_Coffee_Table_Manipulation)
+  (:domain robosuite)
+  (:language Prepare a serving arrangement with sauces and drinks)
+    (:regions
+      (basket_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.13999999999999999 0.53 -0.09999999999999999 0.5700000000000001)
+            )
+          )
+          (:yaw_rotation (
+              (3.141592653589793 3.141592653589793)
+            )
+          )
+      )
+      (chefmate_8_frypan_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.09999999999999999 0.53 0.13999999999999999 0.5700000000000001)
+            )
+          )
+          (:yaw_rotation (
+              (6.283185307179586 6.283185307179586)
+            )
+          )
+      )
+      (wooden_tray_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.02 -0.5700000000000001 0.02 -0.53)
+            )
+          )
+          (:yaw_rotation (
+              (3.141592653589793 3.141592653589793)
+            )
+          )
+      )
+      (cookies_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.16115932842892908 0.06473974597444605 -0.12115932842892908 0.10473974597444606)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (tomato_sauce_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.08588141447324492 -0.08441635349968928 -0.04588141447324491 -0.04441635349968927)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (bbq_sauce_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.032633262564735796 -0.19630274042523022 0.0726332625647358 -0.15630274042523024)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (red_coffee_mug_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.20525468337192804 -0.22902243679426412 -0.16525468337192806 -0.18902243679426414)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (wine_bottle_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.18491448918922607 0.21896231967946875 -0.1449144891892261 0.25896231967946876)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (white_yellow_mug_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.016806389414873935 0.22745663450005946 0.05680638941487394 0.26745663450005946)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (glazed_rim_porcelain_ramekin_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.32 -0.02 -0.27999999999999997 0.02)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (table_region
+          (:target coffee_table)
+          (:ranges (
+              (-2 -2 2 2)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (contain_region
+          (:target basket_1)
+      )
+      (contain_region
+          (:target wooden_tray_1)
+      )
+    )
+
+  (:fixtures
+    coffee_table - coffee_table
+  )
+
+  (:objects
+    basket_1 - basket
+    bbq_sauce_1 - bbq_sauce
+    chefmate_8_frypan_1 - chefmate_8_frypan
+    cookies_1 - cookies
+    glazed_rim_porcelain_ramekin_1 - glazed_rim_porcelain_ramekin
+    red_coffee_mug_1 - red_coffee_mug
+    tomato_sauce_1 - tomato_sauce
+    white_yellow_mug_1 - white_yellow_mug
+    wine_bottle_1 - wine_bottle
+    wooden_tray_1 - wooden_tray
+  )
+
+  (:obj_of_interest
+    cookies_1
+    basket_1
+    chefmate_8_frypan_1
+    tomato_sauce_1
+    bbq_sauce_1
+    red_coffee_mug_1
+    wine_bottle_1
+    white_yellow_mug_1
+    wooden_tray_1
+  )
+
+  (:init
+    (On basket_1 coffee_table_basket_init_region)
+    (On chefmate_8_frypan_1 coffee_table_chefmate_8_frypan_init_region)
+    (On wooden_tray_1 coffee_table_wooden_tray_init_region)
+    (On cookies_1 coffee_table_cookies_init_region)
+    (On tomato_sauce_1 coffee_table_tomato_sauce_init_region)
+    (On bbq_sauce_1 coffee_table_bbq_sauce_init_region)
+    (On red_coffee_mug_1 coffee_table_red_coffee_mug_init_region)
+    (On wine_bottle_1 coffee_table_wine_bottle_init_region)
+    (On white_yellow_mug_1 coffee_table_white_yellow_mug_init_region)
+    (On glazed_rim_porcelain_ramekin_1 coffee_table_glazed_rim_porcelain_ramekin_init_region)
+  )
+
+  (:goal
+    (And (In cookies_1 basket_1_contain_region) (On basket_1 coffee_table_basket_init_region) (On chefmate_8_frypan_1 coffee_table_chefmate_8_frypan_init_region) (On tomato_sauce_1 coffee_table_tomato_sauce_init_region) (On bbq_sauce_1 coffee_table_bbq_sauce_init_region) (On red_coffee_mug_1 coffee_table_red_coffee_mug_init_region) (On wine_bottle_1 coffee_table_wine_bottle_init_region) (On white_yellow_mug_1 coffee_table_white_yellow_mug_init_region) (On wooden_tray_1 coffee_table_wooden_tray_init_region))
+  )
+
+)

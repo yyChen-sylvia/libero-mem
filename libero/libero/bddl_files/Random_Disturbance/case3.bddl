@@ -1,0 +1,121 @@
+(define (problem LIBERO_Coffee_Table_Manipulation)
+  (:domain robosuite)
+  (:language Set up a snack serving arrangement)
+    (:regions
+      (plate_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.07009045743883598 -0.014665298089992711 -0.030090457438835972 0.02533470191000729)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (dining_set_group_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.15868799883531304 0.06862909808448471 0.19868799883531302 0.10862909808448472)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (popcorn_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.14209975220153426 0.3103003454869284 -0.10209975220153425 0.35030034548692845)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (cookies_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.17909597404922079 -0.13089195847875382 0.21909597404922077 -0.09089195847875382)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (wine_bottle_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.053797261806522154 -0.5109372771035652 0.09379726180652216 -0.47093727710356514)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (moka_pot_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.32 -0.02 -0.27999999999999997 0.02)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (table_region
+          (:target coffee_table)
+          (:ranges (
+              (-2 -2 2 2)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (center_region
+          (:target dining_set_group_1)
+      )
+    )
+
+  (:fixtures
+    coffee_table - coffee_table
+    dining_set_group_1 - dining_set_group
+  )
+
+  (:objects
+    cookies_1 - cookies
+    moka_pot_1 - moka_pot
+    plate_1 - plate
+    popcorn_1 - popcorn
+    wine_bottle_1 - wine_bottle
+  )
+
+  (:obj_of_interest
+    plate_1
+    dining_set_group_1
+    popcorn_1
+    cookies_1
+    wine_bottle_1
+  )
+
+  (:init
+    (On plate_1 coffee_table_plate_init_region)
+    (On dining_set_group_1 coffee_table_dining_set_group_init_region)
+    (On popcorn_1 coffee_table_popcorn_init_region)
+    (On cookies_1 coffee_table_cookies_init_region)
+    (On wine_bottle_1 coffee_table_wine_bottle_init_region)
+    (On moka_pot_1 coffee_table_moka_pot_init_region)
+  )
+
+  (:goal
+    (And (On plate_1 coffee_table_plate_init_region) (On dining_set_group_1 coffee_table_dining_set_group_init_region) (On popcorn_1 coffee_table_popcorn_init_region) (On cookies_1 coffee_table_cookies_init_region) (On wine_bottle_1 coffee_table_wine_bottle_init_region))
+  )
+
+)

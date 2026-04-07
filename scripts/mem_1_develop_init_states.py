@@ -113,7 +113,7 @@ def collect_init_states(
     saving = True
     count = 0
     rollout_video = []
-    print("Press 'q' to reset and 's' to save init state.")
+    # print("Press 'q' to reset and 's' to save init state.")
     while True:
         count += 1
         # Set active robot
@@ -127,18 +127,21 @@ def collect_init_states(
         obs, reward, done, info = env.step([0,0,0,0,0,0,-1])
         # env.render()
 
-        ego_view = obs['robot0_eye_in_hand_image'][:,::-1]
-        exo_view = obs['agentview_image'][::-1,:]
-        camera_view = cv2.hconcat([exo_view, ego_view])
+        # ego_view = obs['robot0_eye_in_hand_image'][:,::-1]
+        # exo_view = obs['agentview_image'][::-1,:]
+        # camera_view = cv2.hconcat([exo_view, ego_view])
 
-        cv2.imshow('camera_view', cv2.cvtColor(camera_view, cv2.COLOR_RGB2BGR))
-        _key_ = cv2.waitKey(1)
-        if _key_ == ord('q'):
-            saving = False
-            break
-        elif _key_ == ord('s'):
-            saving = True
-            break
+        # cv2.imshow('camera_view', cv2.cvtColor(camera_view, cv2.COLOR_RGB2BGR))
+        # _key_ = cv2.waitKey(1)
+        # if _key_ == ord('q'):
+        #     saving = False
+        #     break
+        # elif _key_ == ord('s'):
+        #     saving = True
+        #     break
+
+        saving = True
+        break
 
     # cleanup for end of data collection episodes
     if not saving:

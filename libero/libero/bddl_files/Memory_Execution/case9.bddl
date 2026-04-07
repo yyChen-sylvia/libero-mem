@@ -1,0 +1,165 @@
+(define (problem LIBERO_Coffee_Table_Manipulation)
+  (:domain robosuite)
+  (:language Prepare a warm soup and a fresh milk beverage)
+    (:regions
+      (white_cabinet_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.02 -0.5700000000000001 0.02 -0.53)
+            )
+          )
+          (:yaw_rotation (
+              (3.141592653589793 3.141592653589793)
+            )
+          )
+      )
+      (microwave_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.02 0.53 0.02 0.5700000000000001)
+            )
+          )
+          (:yaw_rotation (
+              (6.283185307179586 6.283185307179586)
+            )
+          )
+      )
+      (alphabet_soup_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.18741759936678642 0.07249631325238602 0.2274175993667864 0.11249631325238603)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (white_yellow_mug_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.008174154747685115 -0.0709379705614753 0.04817415474768512 -0.030937970561475295)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (milk_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.03549303002998673 0.17802512252895183 0.004506969970013274 0.21802512252895181)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (moka_pot_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.32 -0.02 -0.27999999999999997 0.02)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (popcorn_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.08 -0.02 0.12000000000000001 0.02)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (akita_black_bowl_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.18000000000000002 -0.12000000000000001 0.22 -0.08)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (table_region
+          (:target coffee_table)
+          (:ranges (
+              (-2 -2 2 2)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (top_side
+          (:target microwave_1)
+      )
+      (heating_region
+          (:target microwave_1)
+      )
+      (top_side
+          (:target white_cabinet_1)
+      )
+      (top_region
+          (:target white_cabinet_1)
+      )
+      (middle_region
+          (:target white_cabinet_1)
+      )
+      (bottom_region
+          (:target white_cabinet_1)
+      )
+    )
+
+  (:fixtures
+    coffee_table - coffee_table
+    microwave_1 - microwave
+    white_cabinet_1 - white_cabinet
+  )
+
+  (:objects
+    akita_black_bowl_1 - akita_black_bowl
+    alphabet_soup_1 - alphabet_soup
+    milk_1 - milk
+    moka_pot_1 - moka_pot
+    white_yellow_mug_1 - white_yellow_mug
+    popcorn_1 - popcorn
+    butter_1 - butter
+  )
+
+  (:obj_of_interest
+    white_cabinet_1
+    akita_black_bowl_1
+    alphabet_soup_1
+    microwave_1
+    white_yellow_mug_1
+    milk_1
+  )
+
+  (:init
+    (On white_cabinet_1 coffee_table_white_cabinet_init_region)
+    (On microwave_1 coffee_table_microwave_init_region)
+    (On akita_black_bowl_1 coffee_table_akita_black_bowl_init_region)
+    (On alphabet_soup_1 coffee_table_alphabet_soup_init_region)
+    (On white_yellow_mug_1 coffee_table_white_yellow_mug_init_region)
+    (On milk_1 coffee_table_milk_init_region)
+    (On moka_pot_1 coffee_table_moka_pot_init_region)
+    (In butter_1 white_cabinet_1_top_region)
+    (On popcorn_1 coffee_table_popcorn_init_region)
+  )
+
+  (:goal
+    (And (On white_cabinet_1 coffee_table_white_cabinet_init_region) (In akita_black_bowl_1 microwave_1_heating_region) (On alphabet_soup_1 coffee_table_alphabet_soup_init_region) (On microwave_1 coffee_table_microwave_init_region) (On white_yellow_mug_1 coffee_table_white_yellow_mug_init_region) (On milk_1 coffee_table_milk_init_region))
+  )
+
+)

@@ -1,0 +1,130 @@
+(define (problem LIBERO_Kitchen_Tabletop_Manipulation)
+  (:domain robosuite)
+  (:language Organize selected food items i)
+    (:regions
+      (wooden_cabinet_init_region
+          (:target kitchen_table)
+          (:ranges (
+              (-0.12000000000000001 -0.47000000000000003 -0.08 -0.43)
+            )
+          )
+          (:yaw_rotation (
+              (3.141592653589793 3.141592653589793)
+            )
+          )
+      )
+      (wooden_shelf_init_region
+          (:target kitchen_table)
+          (:ranges (
+              (-0.12000000000000001 0.43 -0.08 0.47000000000000003)
+            )
+          )
+          (:yaw_rotation (
+              (6.283185307179586 6.283185307179586)
+            )
+          )
+      )
+      (cream_cheese_init_region
+          (:target kitchen_table)
+          (:ranges (
+              (0.17598578832187114 0.07318021023755693 0.21598578832187112 0.11318021023755694)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (plate_init_region
+          (:target kitchen_table)
+          (:ranges (
+              (-0.22336534778385572 0.17033997582449714 -0.18336534778385574 0.21033997582449712)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (red_coffee_mug_init_region
+          (:target kitchen_table)
+          (:ranges (
+              (-0.32 -0.02 -0.27999999999999997 0.02)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (table_region
+          (:target kitchen_table)
+          (:ranges (
+              (-2 -2 2 2)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (top_side
+          (:target wooden_cabinet_1)
+      )
+      (top_region
+          (:target wooden_cabinet_1)
+      )
+      (middle_region
+          (:target wooden_cabinet_1)
+      )
+      (bottom_region
+          (:target wooden_cabinet_1)
+      )
+      (top_side
+          (:target wooden_shelf_1)
+      )
+      (top_region
+          (:target wooden_shelf_1)
+      )
+      (middle_region
+          (:target wooden_shelf_1)
+      )
+      (bottom_region
+          (:target wooden_shelf_1)
+      )
+    )
+
+  (:fixtures
+    kitchen_table - kitchen_table
+    wooden_cabinet_1 - wooden_cabinet
+    wooden_shelf_1 - wooden_shelf
+  )
+
+  (:objects
+    cream_cheese_1 - cream_cheese
+    plate_1 - plate
+    red_coffee_mug_1 - red_coffee_mug
+    butter_1 - butter
+  )
+
+  (:obj_of_interest
+    wooden_cabinet_1
+    cream_cheese_1
+    wooden_shelf_1
+    plate_1
+  )
+
+  (:init
+    (On wooden_cabinet_1 kitchen_table_wooden_cabinet_init_region)
+    (On wooden_shelf_1 kitchen_table_wooden_shelf_init_region)
+    (On cream_cheese_1 kitchen_table_cream_cheese_init_region)
+    (On plate_1 kitchen_table_plate_init_region)
+    (On red_coffee_mug_1 kitchen_table_red_coffee_mug_init_region)
+    (In butter_1 wooden_cabinet_1_bottom_region)
+  )
+
+  (:goal
+    (And (On wooden_cabinet_1 kitchen_table_wooden_cabinet_init_region) (In cream_cheese_1 wooden_cabinet_1_top_region) (On wooden_shelf_1 kitchen_table_wooden_shelf_init_region) (In plate_1 wooden_shelf_1_middle_region))
+  )
+
+)

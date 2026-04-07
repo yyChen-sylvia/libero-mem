@@ -1,0 +1,135 @@
+(define (problem LIBERO_Coffee_Table_Manipulation)
+  (:domain robosuite)
+  (:language Prepare two dessert bowls and set up the stovetop for cooking)
+    (:regions
+      (chefmate_8_frypan_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.02 -0.5700000000000001 0.02 -0.53)
+            )
+          )
+          (:yaw_rotation (
+              (3.141592653589793 3.141592653589793)
+            )
+          )
+      )
+      (flat_stove_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.02 0.53 0.02 0.5700000000000001)
+            )
+          )
+          (:yaw_rotation (
+              (6.283185307179586 6.283185307179586)
+            )
+          )
+      )
+      (chocolate_pudding_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.05034967675851952 -0.2535246687353771 -0.010349676758519517 -0.21352466873537712)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (akita_black_bowl_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.12849575820026896 -0.09858200099245072 -0.08849575820026896 -0.058582000992450714)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (butter_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.21439932599255962 0.3147217465070085 -0.17439932599255964 0.35472174650700855)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (white_bowl_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.01744918694936203 0.11704303579696569 0.05744918694936203 0.15704303579696569)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (cookies_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.32 -0.02 -0.27999999999999997 0.02)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (table_region
+          (:target coffee_table)
+          (:ranges (
+              (-2 -2 2 2)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (cook_region
+          (:target flat_stove_1)
+      )
+    )
+
+  (:fixtures
+    coffee_table - coffee_table
+    flat_stove_1 - flat_stove
+  )
+
+  (:objects
+    akita_black_bowl_1 - akita_black_bowl
+    butter_1 - butter
+    chefmate_8_frypan_1 - chefmate_8_frypan
+    chocolate_pudding_1 - chocolate_pudding
+    cookies_1 - cookies
+    white_bowl_1 - white_bowl
+  )
+
+  (:obj_of_interest
+    chocolate_pudding_1
+    akita_black_bowl_1
+    butter_1
+    white_bowl_1
+    flat_stove_1
+    chefmate_8_frypan_1
+  )
+
+  (:init
+    (On chefmate_8_frypan_1 coffee_table_chefmate_8_frypan_init_region)
+    (On flat_stove_1 coffee_table_flat_stove_init_region)
+    (On chocolate_pudding_1 coffee_table_chocolate_pudding_init_region)
+    (On akita_black_bowl_1 coffee_table_akita_black_bowl_init_region)
+    (On butter_1 coffee_table_butter_init_region)
+    (On white_bowl_1 coffee_table_white_bowl_init_region)
+    (On cookies_1 coffee_table_cookies_init_region)
+  )
+
+  (:goal
+    (And (On chocolate_pudding_1 coffee_table_chocolate_pudding_init_region) (On akita_black_bowl_1 coffee_table_akita_black_bowl_init_region) (On butter_1 coffee_table_butter_init_region) (On white_bowl_1 coffee_table_white_bowl_init_region) (On flat_stove_1 coffee_table_flat_stove_init_region) (In chefmate_8_frypan_1 flat_stove_1_cook_region))
+  )
+
+)

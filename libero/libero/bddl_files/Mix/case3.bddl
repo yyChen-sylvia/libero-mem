@@ -1,0 +1,133 @@
+(define (problem LIBERO_Coffee_Table_Manipulation)
+  (:domain robosuite)
+  (:language Combine ingredients to create a mixed sauce in a frying pan)
+    (:regions
+      (chefmate_8_frypan_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.02 -0.5700000000000001 0.02 -0.53)
+            )
+          )
+          (:yaw_rotation (
+              (3.141592653589793 3.141592653589793)
+            )
+          )
+      )
+      (white_cabinet_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.02 0.53 0.02 0.5700000000000001)
+            )
+          )
+          (:yaw_rotation (
+              (6.283185307179586 6.283185307179586)
+            )
+          )
+      )
+      (bbq_sauce_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.05058298381297198 -0.2599275525537019 0.09058298381297199 -0.21992755255370192)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (red_coffee_mug_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.010264989700999528 -0.03451951865523496 0.05026498970099953 0.005480481344765042)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (orange_juice_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.22117781716416535 -0.25958119405422303 -0.18117781716416537 -0.21958119405422305)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (black_book_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.32 -0.02 -0.27999999999999997 0.02)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (table_region
+          (:target coffee_table)
+          (:ranges (
+              (-2 -2 2 2)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (top_side
+          (:target white_cabinet_1)
+      )
+      (top_region
+          (:target white_cabinet_1)
+      )
+      (middle_region
+          (:target white_cabinet_1)
+      )
+      (bottom_region
+          (:target white_cabinet_1)
+      )
+    )
+
+  (:fixtures
+    coffee_table - coffee_table
+    white_cabinet_1 - white_cabinet
+  )
+
+  (:objects
+    bbq_sauce_1 - bbq_sauce
+    black_book_1 - black_book
+    butter_1 - butter
+    chefmate_8_frypan_1 - chefmate_8_frypan
+    orange_juice_1 - orange_juice
+    red_coffee_mug_1 - red_coffee_mug
+  )
+
+  (:obj_of_interest
+    white_cabinet_1
+    butter_1
+    chefmate_8_frypan_1
+    bbq_sauce_1
+    red_coffee_mug_1
+    orange_juice_1
+  )
+
+  (:init
+    (On chefmate_8_frypan_1 coffee_table_chefmate_8_frypan_init_region)
+    (On white_cabinet_1 coffee_table_white_cabinet_init_region)
+    (In butter_1 white_cabinet_1_middle_region)
+    (On bbq_sauce_1 coffee_table_bbq_sauce_init_region)
+    (On red_coffee_mug_1 coffee_table_red_coffee_mug_init_region)
+    (On orange_juice_1 coffee_table_orange_juice_init_region)
+    (On black_book_1 coffee_table_black_book_init_region)
+  )
+
+  (:goal
+    (And (On white_cabinet_1 coffee_table_white_cabinet_init_region) (On butter_1 coffee_table_butter_init_region) (On chefmate_8_frypan_1 coffee_table_chefmate_8_frypan_init_region) (On bbq_sauce_1 coffee_table_bbq_sauce_init_region) (On red_coffee_mug_1 coffee_table_red_coffee_mug_init_region) (On orange_juice_1 coffee_table_orange_juice_init_region))
+  )
+
+)

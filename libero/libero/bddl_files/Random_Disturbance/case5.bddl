@@ -1,0 +1,105 @@
+(define (problem LIBERO_Coffee_Table_Manipulation)
+  (:domain robosuite)
+  (:language Prepare a snack tray with chocolate pudding and wine)
+    (:regions
+      (wooden_cabinet_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.02 -0.5700000000000001 0.02 -0.53)
+            )
+          )
+          (:yaw_rotation (
+              (3.141592653589793 3.141592653589793)
+            )
+          )
+      )
+      (plate_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.030313430828717774 0.30221794284327724 0.009686569171282227 0.3422179428432773)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (wine_bottle_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.061484978688066586 0.04565829669800649 -0.02148497868806658 0.0856582966980065)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (ketchup_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.32 -0.02 -0.27999999999999997 0.02)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (table_region
+          (:target coffee_table)
+          (:ranges (
+              (-2 -2 2 2)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (top_side
+          (:target wooden_cabinet_1)
+      )
+      (top_region
+          (:target wooden_cabinet_1)
+      )
+      (middle_region
+          (:target wooden_cabinet_1)
+      )
+      (bottom_region
+          (:target wooden_cabinet_1)
+      )
+    )
+
+  (:fixtures
+    coffee_table - coffee_table
+    wooden_cabinet_1 - wooden_cabinet
+  )
+
+  (:objects
+    chocolate_pudding_1 - chocolate_pudding
+    ketchup_1 - ketchup
+    plate_1 - plate
+    wine_bottle_1 - wine_bottle
+  )
+
+  (:obj_of_interest
+    wooden_cabinet_1
+    plate_1
+    chocolate_pudding_1
+    wine_bottle_1
+  )
+
+  (:init
+    (On wooden_cabinet_1 coffee_table_wooden_cabinet_init_region)
+    (On plate_1 coffee_table_plate_init_region)
+    (In chocolate_pudding_1 wooden_cabinet_1_top_side)
+    (On wine_bottle_1 coffee_table_wine_bottle_init_region)
+    (On ketchup_1 coffee_table_ketchup_init_region)
+  )
+
+  (:goal
+    (And (On wooden_cabinet_1 coffee_table_wooden_cabinet_init_region) (On plate_1 coffee_table_plate_init_region) (On chocolate_pudding_1 coffee_table_chocolate_pudding_init_region) (On wine_bottle_1 coffee_table_wine_bottle_init_region))
+  )
+
+)

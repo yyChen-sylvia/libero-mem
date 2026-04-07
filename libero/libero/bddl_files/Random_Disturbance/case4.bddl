@@ -1,0 +1,130 @@
+(define (problem LIBERO_Coffee_Table_Manipulation)
+  (:domain robosuite)
+  (:language Prepare a bowl of snack and store the kitchen tool)
+    (:regions
+      (chefmate_8_frypan_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.02 -0.5700000000000001 0.02 -0.53)
+            )
+          )
+          (:yaw_rotation (
+              (3.141592653589793 3.141592653589793)
+            )
+          )
+      )
+      (wooden_cabinet_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.02 0.53 0.02 0.5700000000000001)
+            )
+          )
+          (:yaw_rotation (
+              (6.283185307179586 6.283185307179586)
+            )
+          )
+      )
+      (white_bowl_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.2416908610789397 -0.17804432433619208 -0.20169086107893971 -0.1380443243361921)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (cream_cheese_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.05657952221184913 0.06325117453608371 0.09657952221184914 0.10325117453608372)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (popcorn_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.19267095377051346 -0.016161429128581078 0.23267095377051344 0.023838570871418923)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (moka_pot_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.32 -0.02 -0.27999999999999997 0.02)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (table_region
+          (:target coffee_table)
+          (:ranges (
+              (-2 -2 2 2)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (top_side
+          (:target wooden_cabinet_1)
+      )
+      (top_region
+          (:target wooden_cabinet_1)
+      )
+      (middle_region
+          (:target wooden_cabinet_1)
+      )
+      (bottom_region
+          (:target wooden_cabinet_1)
+      )
+    )
+
+  (:fixtures
+    coffee_table - coffee_table
+    wooden_cabinet_1 - wooden_cabinet
+  )
+
+  (:objects
+    chefmate_8_frypan_1 - chefmate_8_frypan
+    cream_cheese_1 - cream_cheese
+    moka_pot_1 - moka_pot
+    popcorn_1 - popcorn
+    white_bowl_1 - white_bowl
+  )
+
+  (:obj_of_interest
+    white_bowl_1
+    cream_cheese_1
+    popcorn_1
+    wooden_cabinet_1
+    chefmate_8_frypan_1
+  )
+
+  (:init
+    (On chefmate_8_frypan_1 coffee_table_chefmate_8_frypan_init_region)
+    (On wooden_cabinet_1 coffee_table_wooden_cabinet_init_region)
+    (On white_bowl_1 coffee_table_white_bowl_init_region)
+    (On cream_cheese_1 coffee_table_cream_cheese_init_region)
+    (On popcorn_1 coffee_table_popcorn_init_region)
+    (On moka_pot_1 coffee_table_moka_pot_init_region)
+  )
+
+  (:goal
+    (And (On white_bowl_1 coffee_table_white_bowl_init_region) (On cream_cheese_1 coffee_table_cream_cheese_init_region) (On popcorn_1 coffee_table_popcorn_init_region) (On wooden_cabinet_1 coffee_table_wooden_cabinet_init_region) (In chefmate_8_frypan_1 wooden_cabinet_1_top_region))
+  )
+
+)

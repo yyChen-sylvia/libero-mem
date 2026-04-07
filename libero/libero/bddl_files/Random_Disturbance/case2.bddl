@@ -1,0 +1,147 @@
+(define (problem LIBERO_Coffee_Table_Manipulation)
+  (:domain robosuite)
+  (:language Arrange selected kitchen items using the robotic_arm)
+    (:regions
+      (white_storage_box_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.15754999999999997 -0.5700000000000001 -0.11754999999999997 -0.53)
+            )
+          )
+          (:yaw_rotation (
+              (3.141592653589793 3.141592653589793)
+            )
+          )
+      )
+      (rack_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.11754999999999997 -0.5700000000000001 0.15754999999999997 -0.53)
+            )
+          )
+          (:yaw_rotation (
+              (3.141592653589793 3.141592653589793)
+            )
+          )
+      )
+      (chefmate_8_frypan_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.17004999999999998 0.53 -0.13005 0.5700000000000001)
+            )
+          )
+          (:yaw_rotation (
+              (6.283185307179586 6.283185307179586)
+            )
+          )
+      )
+      (wine_rack_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.13005 0.53 0.17004999999999998 0.5700000000000001)
+            )
+          )
+          (:yaw_rotation (
+              (6.283185307179586 6.283185307179586)
+            )
+          )
+      )
+      (cream_cheese_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.0760502033937366 0.18149408563235095 -0.03605020339373659 0.22149408563235093)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (wine_bottle_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.1135940838520839 0.1624724134715608 0.1535940838520839 0.20247241347156078)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (moka_pot_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.32 -0.02 -0.27999999999999997 0.02)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (table_region
+          (:target coffee_table)
+          (:ranges (
+              (-2 -2 2 2)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (top_side
+          (:target white_storage_box_1)
+      )
+      (bottom_side
+          (:target white_storage_box_1)
+      )
+      (right_side
+          (:target white_storage_box_1)
+      )
+      (left_side
+          (:target white_storage_box_1)
+      )
+      (top_region
+          (:target wine_rack_1)
+      )
+    )
+
+  (:fixtures
+    coffee_table - coffee_table
+    white_storage_box_1 - white_storage_box
+    wine_rack_1 - wine_rack
+  )
+
+  (:objects
+    chefmate_8_frypan_1 - chefmate_8_frypan
+    cream_cheese_1 - cream_cheese
+    moka_pot_1 - moka_pot
+    rack_1 - rack
+    wine_bottle_1 - wine_bottle
+  )
+
+  (:obj_of_interest
+    cream_cheese_1
+    white_storage_box_1
+    wine_bottle_1
+    wine_rack_1
+    chefmate_8_frypan_1
+    rack_1
+  )
+
+  (:init
+    (On white_storage_box_1 coffee_table_white_storage_box_init_region)
+    (On rack_1 coffee_table_rack_init_region)
+    (On chefmate_8_frypan_1 coffee_table_chefmate_8_frypan_init_region)
+    (On wine_rack_1 coffee_table_wine_rack_init_region)
+    (On cream_cheese_1 coffee_table_cream_cheese_init_region)
+    (On wine_bottle_1 coffee_table_wine_bottle_init_region)
+    (On moka_pot_1 coffee_table_moka_pot_init_region)
+  )
+
+  (:goal
+    (And (In cream_cheese_1 white_storage_box_1_top_side) (On white_storage_box_1 coffee_table_white_storage_box_init_region) (In wine_bottle_1 wine_rack_1_top_region) (On wine_rack_1 coffee_table_wine_rack_init_region) (On chefmate_8_frypan_1 coffee_table_chefmate_8_frypan_init_region) (On rack_1 coffee_table_rack_init_region))
+  )
+
+)

@@ -1,0 +1,141 @@
+(define (problem LIBERO_Coffee_Table_Manipulation)
+  (:domain robosuite)
+  (:language Organize selected food items and beverage using available tableware and storage)
+    (:regions
+      (short_cabinet_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.02 -0.5700000000000001 0.02 -0.53)
+            )
+          )
+          (:yaw_rotation (
+              (3.141592653589793 3.141592653589793)
+            )
+          )
+      )
+      (cream_cheese_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.05677162020361497 0.4417691250171041 -0.016771620203614963 0.4817691250171041)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (chocolate_pudding_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.021131707128680437 0.17850163979286773 0.018868292871319563 0.2185016397928677)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (akita_black_bowl_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.051033413778526146 -0.12817829298796832 0.09103341377852615 -0.08817829298796831)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (white_yellow_mug_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.13603365488213437 0.37772900527978137 0.17603365488213435 0.4177290052797814)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (wine_bottle_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.16618764222591317 0.31903125744615934 -0.1261876422259132 0.3590312574461594)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (black_book_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.32 -0.02 -0.27999999999999997 0.02)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (table_region
+          (:target coffee_table)
+          (:ranges (
+              (-2 -2 2 2)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (middle_region
+          (:target short_cabinet_1)
+      )
+      (top_region
+          (:target short_cabinet_1)
+      )
+      (bottom_region
+          (:target short_cabinet_1)
+      )
+    )
+
+  (:fixtures
+    coffee_table - coffee_table
+    short_cabinet_1 - short_cabinet
+  )
+
+  (:objects
+    akita_black_bowl_1 - akita_black_bowl
+    black_book_1 - black_book
+    chocolate_pudding_1 - chocolate_pudding
+    cream_cheese_1 - cream_cheese
+    white_yellow_mug_1 - white_yellow_mug
+    wine_bottle_1 - wine_bottle
+  )
+
+  (:obj_of_interest
+    short_cabinet_1
+    cream_cheese_1
+    chocolate_pudding_1
+    akita_black_bowl_1
+    white_yellow_mug_1
+    wine_bottle_1
+  )
+
+  (:init
+    (On short_cabinet_1 coffee_table_short_cabinet_init_region)
+    (On cream_cheese_1 coffee_table_cream_cheese_init_region)
+    (On chocolate_pudding_1 coffee_table_chocolate_pudding_init_region)
+    (On akita_black_bowl_1 coffee_table_akita_black_bowl_init_region)
+    (On white_yellow_mug_1 coffee_table_white_yellow_mug_init_region)
+    (On wine_bottle_1 coffee_table_wine_bottle_init_region)
+    (On black_book_1 coffee_table_black_book_init_region)
+  )
+
+  (:goal
+    (And (On short_cabinet_1 coffee_table_short_cabinet_init_region) (In cream_cheese_1 short_cabinet_1_middle_region) (On chocolate_pudding_1 coffee_table_chocolate_pudding_init_region) (On akita_black_bowl_1 coffee_table_akita_black_bowl_init_region) (On white_yellow_mug_1 coffee_table_white_yellow_mug_init_region) (On wine_bottle_1 coffee_table_wine_bottle_init_region))
+  )
+
+)

@@ -4,3 +4,5 @@
 *.pyd
 __pycache__/
 */__pycache__/
+libero.egg-info/
+env/

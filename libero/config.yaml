@@ -1,0 +1,5 @@
+assets: /home/sylvia/sylvia/bigai/03vla/LIBERO-Mem/libero-mem/libero/libero/./assets
+bddl_files: /home/sylvia/sylvia/bigai/03vla/LIBERO-Mem/libero-mem/libero/libero/./bddl_files
+benchmark_root: /home/sylvia/sylvia/bigai/03vla/LIBERO-Mem/libero-mem/libero/libero
+datasets: /home/sylvia/sylvia/bigai/03vla/LIBERO-Mem/libero-mem/datasets
+init_states: /home/sylvia/sylvia/bigai/03vla/LIBERO-Mem/libero-mem/libero/libero/./init_files

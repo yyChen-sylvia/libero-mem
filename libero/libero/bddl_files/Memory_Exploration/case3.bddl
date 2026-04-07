@@ -1,0 +1,136 @@
+(define (problem LIBERO_Coffee_Table_Manipulation)
+  (:domain robosuite)
+  (:language Prepare a hot buttered dish and a wine drink)
+    (:regions
+      (chefmate_8_frypan_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.1575 0.53 -0.11750000000000001 0.5700000000000001)
+            )
+          )
+          (:yaw_rotation (
+              (6.283185307179586 6.283185307179586)
+            )
+          )
+      )
+      (wooden_cabinet_init_region
+          (:target coffee_table)
+          (:ranges (
+              (0.11750000000000001 0.53 0.1575 0.5700000000000001)
+            )
+          )
+          (:yaw_rotation (
+              (6.283185307179586 6.283185307179586)
+            )
+          )
+      )
+      (flat_stove_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.02 -0.5700000000000001 0.02 -0.53)
+            )
+          )
+          (:yaw_rotation (
+              (3.141592653589793 3.141592653589793)
+            )
+          )
+      )
+      (wine_bottle_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.0242239515157807 -0.10579544944838047 0.0157760484842193 -0.06579544944838046)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (white_yellow_mug_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.23075885276543404 -0.2550723139564259 -0.19075885276543406 -0.21507231395642587)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (macaroni_and_cheese_init_region
+          (:target coffee_table)
+          (:ranges (
+              (-0.32 -0.02 -0.27999999999999997 0.02)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (table_region
+          (:target coffee_table)
+          (:ranges (
+              (-2 -2 2 2)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (cook_region
+          (:target flat_stove_1)
+      )
+      (top_side
+          (:target wooden_cabinet_1)
+      )
+      (top_region
+          (:target wooden_cabinet_1)
+      )
+      (middle_region
+          (:target wooden_cabinet_1)
+      )
+      (bottom_region
+          (:target wooden_cabinet_1)
+      )
+    )
+
+  (:fixtures
+    coffee_table - coffee_table
+    flat_stove_1 - flat_stove
+    wooden_cabinet_1 - wooden_cabinet
+  )
+
+  (:objects
+    butter_1 - butter
+    chefmate_8_frypan_1 - chefmate_8_frypan
+    macaroni_and_cheese_1 - macaroni_and_cheese
+    white_yellow_mug_1 - white_yellow_mug
+    wine_bottle_1 - wine_bottle
+  )
+
+  (:obj_of_interest
+    wooden_cabinet_1
+    chefmate_8_frypan_1
+    flat_stove_1
+    butter_1
+    wine_bottle_1
+    white_yellow_mug_1
+  )
+
+  (:init
+    (On chefmate_8_frypan_1 coffee_table_chefmate_8_frypan_init_region)
+    (On wooden_cabinet_1 coffee_table_wooden_cabinet_init_region)
+    (On flat_stove_1 coffee_table_flat_stove_init_region)
+    (In butter_1 wooden_cabinet_1_middle_region)
+    (On wine_bottle_1 coffee_table_wine_bottle_init_region)
+    (On white_yellow_mug_1 coffee_table_white_yellow_mug_init_region)
+    (On macaroni_and_cheese_1 coffee_table_macaroni_and_cheese_init_region)
+  )
+
+  (:goal
+    (And (On wooden_cabinet_1 coffee_table_wooden_cabinet_init_region) (On chefmate_8_frypan_1 coffee_table_chefmate_8_frypan_init_region) (On flat_stove_1 coffee_table_flat_stove_init_region) (On butter_1 coffee_table_butter_init_region) (On wine_bottle_1 coffee_table_wine_bottle_init_region) (On white_yellow_mug_1 coffee_table_white_yellow_mug_init_region))
+  )
+
+)
